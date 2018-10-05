@@ -1,0 +1,15 @@
+html {
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  background: #ececec;
+}
+
+.promo {
+  color: rgba(0,0,0,.6);
+  font-size: 30px;
+}
+
+.promoSmall {
+  composes: promo;
+  font-size: 14px;
+}
