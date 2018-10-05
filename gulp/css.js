@@ -1,12 +1,13 @@
-import { dest, src, series } from 'gulp';
 import fs from 'fs';
 import bs from 'browser-sync';
 import postCss from 'gulp-postcss';
+import { dest, src, series } from 'gulp';
+import { fileManager } from 'gulp/utils/paths';
 
 const generateJson = (cssFileName, json) => {
   const path          = require('path');
   const cssName       = path.basename(cssFileName, '.css');
-  const jsonFileName  = path.resolve('./src/css-modules-sourcemaps/' + cssName + '.json');
+  const jsonFileName  = path.resolve(fileManager.sourceMapsCss + cssName + '.json');
   fs.writeFileSync(jsonFileName, JSON.stringify(json));
 };
 
@@ -18,9 +19,9 @@ const plugins = [
 ];
 
 const css = () => {
-  return src(['src/css/*.css'])
+  return src([fileManager.sourceCss])
     .pipe(postCss(plugins, {}))
-    .pipe(dest('www/css'))
+    .pipe(dest(fileManager.buildCss))
     .pipe(bs.stream());
 };
 

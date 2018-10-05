@@ -1,10 +1,11 @@
-import { series } from 'gulp';
 import bs from 'browser-sync';
+import { series } from 'gulp';
+import { fileManager } from 'gulp/utils/paths';
 
 const browserSync = () => {
   return bs.init({
     server: {
-      baseDir: "./www"
+      baseDir: fileManager.baseDir
     }
   });
 };
